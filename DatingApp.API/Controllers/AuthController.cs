@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -64,8 +65,12 @@ namespace DatingApp.API.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-                new Claim(ClaimTypes.Name, userFromRepo.Username)
+                new Claim(ClaimTypes.Name, userFromRepo.Username),
+                
             };
+
+            // var identity = new ClaimsIdentity(claims);
+            // identity.FindFirst("NameIdentifier");
 
             //creates a key to  check if the user returns a valid token , 
             
@@ -93,9 +98,10 @@ namespace DatingApp.API.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
+
             return Ok(new {
                 token = tokenHandler.WriteToken(token)
-            });
+            });            
         }
     }
 }
