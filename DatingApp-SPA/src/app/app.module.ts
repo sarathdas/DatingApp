@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BsDropdownModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,7 +34,6 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {TimeAgoPipe} from 'time-ago-pipe';
 
-
 export function tokenGetter(){
    return localStorage.getItem('token');
 }
@@ -62,7 +61,9 @@ export function tokenGetter(){
       ReactiveFormsModule,
       HttpClientModule,
       BrowserAnimationsModule,
+      ButtonsModule.forRoot(),
       TabsModule.forRoot(),
+      PaginationModule.forRoot(),
       FileUploadModule,
       BsDatepickerModule.forRoot(),
       NgxGalleryModule,
@@ -74,7 +75,8 @@ export function tokenGetter(){
             whitelistedDomains: ['localhost:5000'],
             blacklistedRoutes: ['localhost:5000/auth']
          }
-      })
+      }),
+      PaginationModule.forRoot()
    ],
    providers: [
       AuthService,
